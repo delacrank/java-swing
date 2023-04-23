@@ -1,6 +1,5 @@
 package Menu;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -35,6 +34,10 @@ public class MenuFrame extends JFrame{
 		openItem.setAccelerator(KeyStroke.getKeyStroke("ctrl O"));
 		
 		fileMenu.addSeparator();
+		
+		saveAction = new TestAction("Save");
+		JMenuItem saveItem = fileMenu.add(saveAction);
+		saveItem.setAccelerator(KeyStroke.getKeyStroke("ctrl S"));
 		
 		saveAsAction = new TestAction("Save As");
 		fileMenu.add(saveAsAction);
@@ -77,11 +80,13 @@ public class MenuFrame extends JFrame{
 		editMenu.add(pasteAction);
 		
 		JMenu optionMenu = new JMenu("Options");
-		
 		optionMenu.add(readonlyItem);
 		optionMenu.addSeparator();
 		optionMenu.add(insertItem);
 		optionMenu.add(overtypeItem);
+		
+		editMenu.addSeparator();
+		editMenu.add(optionMenu);
 		
 		JMenu helpMenu = new JMenu("Help");
 		helpMenu.setMnemonic('H');
@@ -103,8 +108,13 @@ public class MenuFrame extends JFrame{
 		
 		popup = new JPopupMenu();
 		
-				
+		popup.add(cutAction);
+		popup.add(copyAction);
+		popup.add(pasteAction);
 		
+		JPanel panel = new JPanel();
+		panel.setComponentPopupMenu(popup);
+		add(panel);
 		
 	}
 }
